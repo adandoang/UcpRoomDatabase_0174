@@ -1,0 +1,10 @@
+package com.example.ucp2.repository
+
+import com.example.ucp2.data.entity.Dosen
+import kotlinx.coroutines.flow.Flow
+
+interface RepositoryDosen {
+    suspend fun insertDsn(dosen: Dosen)
+    fun getAllDsn(): Flow<List<Dosen>>
+    fun getDsn (nidn: String): Flow<Dosen>
+}
