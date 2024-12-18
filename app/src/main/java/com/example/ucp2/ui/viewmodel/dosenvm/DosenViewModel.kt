@@ -40,7 +40,7 @@ data class FormErrorState(
     }
 }
 
-class DosenViewModel(private val  repositoryDsn: RepositoryDosen) : ViewModel() {
+class DosenViewModel(private val  repositoryDosen: RepositoryDosen) : ViewModel() {
     var uiState by mutableStateOf(DsnUIState())
 
     fun updateState(DosenEvent: DosenEvent) {
@@ -66,7 +66,7 @@ class DosenViewModel(private val  repositoryDsn: RepositoryDosen) : ViewModel() 
         if (validateField()) {
             viewModelScope.launch {
                 try {
-                    repositoryDsn.insertDsn(currentEvent.toDosenEntity())
+                    repositoryDosen.insertDsn(currentEvent.toDosenEntity())
                     uiState = uiState.copy(
                         snackBarMessage = "Data Berhasil Disimpan",
                         DosenEvent = DosenEvent(), //reset input form
