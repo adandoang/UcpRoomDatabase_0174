@@ -1,23 +1,18 @@
 package com.example.ucp2.repository
 
 import com.example.ucp2.data.dao.DosenDao
+import com.example.ucp2.data.entity.Dosen
 import kotlinx.coroutines.flow.Flow
 
 class LocalRepositoryDosen (private val dosenDao: DosenDao
-) : RepositoryMhs{
-    override suspend fun insertMhs(mahasiswa: Mahasiswa) {
-        mahasiswaDao.insertMahasiswa(mahasiswa)
+) : RepositoryDosen{
+    override suspend fun insertDsn(dosen: Dosen) {
+        dosenDao.insertDosen(dosen)
     }
-    override suspend fun deleteMhs(mahasiswa: Mahasiswa) {
-        mahasiswaDao.deleteMahasiswa(mahasiswa)
+    override fun getAllDsn(): Flow<List<Dosen>> {
+        return dosenDao.getAllDosen()
     }
-    override suspend fun updateMhs(mahasiswa: Mahasiswa) {
-        mahasiswaDao.updateMahasiswa(mahasiswa)
-    }
-    override fun getAllMhs(): Flow<List<Mahasiswa>> {
-        return mahasiswaDao.getAllMahasiswa()
-    }
-    override fun getMhs(nim: String): Flow<Mahasiswa> {
-        return mahasiswaDao.getMahasiswa(nim)
+    override fun getDsn(nidn: String): Flow<Dosen> {
+        return dosenDao.getDosen(nidn)
     }
 }
