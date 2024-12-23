@@ -47,7 +47,7 @@ fun InsertDsnView(
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DosenViewModel = viewModel(factory = PenyediaDsnViewModel.Factory)
-) {
+){
     val uiState = viewModel.uiState
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
@@ -62,36 +62,37 @@ fun InsertDsnView(
     }
 
 
-    Scaffold(
+    Scaffold (
         modifier = Modifier,
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
-    ) { padding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp)
-            ) {
-                CustomTopAppBar(
-                    onBack = onBack,
-                    showBackButton = true,
-                    judul = "Tambah Dosen"
-                )
+    ){ padding ->
 
-                InsertBodyDsn(
-                    uiState = uiState,
-                    onValueChange = { updatedEvent ->
-                        viewModel.updateState(updatedEvent)
-                    },
-                    onClick = {
-                        coroutineScope.launch {
-                            viewModel.saveData()
-                        }
-                        onNavigate()
+        Column (
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ){
+            CustomTopAppBar(
+                onBack = onBack,
+                showBackButton = true,
+                judul = "Tambah Dosen"
+            )
+
+            InsertBodyDsn(
+                uiState = uiState,
+                onValueChange = { updatedEvent ->
+                    viewModel.updateState(updatedEvent)
+                },
+                onClick = {
+                    coroutineScope.launch {
+                        viewModel.saveData()
                     }
-                )
-            }
+                    onNavigate()
+                }
+            )
         }
     }
+}
 
 @Composable
 fun InsertBodyDsn(
@@ -129,7 +130,8 @@ fun FormDosen(
 ) {
     val jenisKelamin = listOf("Laki-laki", "Perempuan")
         Column(
-            modifier = modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
+
         ) {
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
@@ -162,7 +164,7 @@ fun FormDosen(
             )
 
             Spacer(modifier = Modifier.height(16.dp))
-            Text(text = "Jenis Kelamin")
+            Text(text = "Jenis Kelamin :")
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
