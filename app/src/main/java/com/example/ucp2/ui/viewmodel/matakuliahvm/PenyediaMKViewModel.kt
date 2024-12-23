@@ -1,4 +1,4 @@
-package com.example.ucp2.ui.viewmodel.dosenvm
+package com.example.ucp2.ui.viewmodel.matakuliahvm
 
 import KrsApp
 import android.text.Editable.Factory
@@ -8,18 +8,28 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.ucp2.data.entity.Dosen
+import com.example.ucp2.data.entity.MataKuliah
 
-object PenyediaDsnViewModel{
+object PenyediaMKViewModel{
     val Factory = viewModelFactory {
         initializer {
-            DosenViewModel(
-                krsApp().containerApp.repositoryDosen
+            MataKuliahViewModel(
+                krsApp().containerApp.repositoryMK
             )
         }
         initializer {
-            HomeDsnViewModel(
-                krsApp().containerApp.repositoryDosen
+            HomeMKViewModel(
+                krsApp().containerApp.repositoryMK
+            )
+        }
+        initializer {
+            DetailMataKuliahViewModel(
+                krsApp().containerApp.repositoryMK
+            )
+        }
+        initializer {
+            UpdateMataKuliahViewModel(
+                krsApp().containerApp.repositoryMK
             )
         }
     }

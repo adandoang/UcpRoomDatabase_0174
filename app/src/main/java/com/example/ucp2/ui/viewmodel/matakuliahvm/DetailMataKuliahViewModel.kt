@@ -1,7 +1,5 @@
 package com.example.ucp2.ui.viewmodel.matakuliahvm
 
-package com.example.ucp2.ui.viewmodel
-
 import androidx.core.app.NotificationCompat.MessagingStyle.Message
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -34,11 +32,11 @@ data class DetailUiState(
 }
 
 
-class DetailMKViewModel(
+class DetailMataKuliahViewModel(
     savedStateHandle: SavedStateHandle,
     private val repositoryMK: RepositoryMK
 ) : ViewModel() {
-    private val _kode: String = checkNotNull(savedStateHandle[DestinasiDetail.kode])
+    private val _kode: String = checkNotNull(savedStateHandle[DestinasiDetail.KODE])
 
     val detailUiState: StateFlow<DetailUiState> = repositoryMK.getMK(_kode)
         .filterNotNull()

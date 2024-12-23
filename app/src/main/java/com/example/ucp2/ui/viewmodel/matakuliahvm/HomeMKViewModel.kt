@@ -22,7 +22,7 @@ data class HomeUiState (
     val errorMessage: String = ""
 )
 
-class HomeDsnViewModel (
+class HomeMKViewModel (
     private val repositoryMK: RepositoryMK
 ) : ViewModel() {
     val homeUiState: StateFlow<HomeUiState> = repositoryMK.getAllMK()

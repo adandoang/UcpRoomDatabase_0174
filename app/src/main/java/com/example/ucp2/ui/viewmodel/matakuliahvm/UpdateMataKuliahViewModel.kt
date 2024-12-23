@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.text.Normalizer.Form
 
-class UpdateMKViewModel(
+class UpdateMataKuliahViewModel(
     savedStateHandle: SavedStateHandle,
     private val repositoryMK: RepositoryMK
 ): ViewModel() {
