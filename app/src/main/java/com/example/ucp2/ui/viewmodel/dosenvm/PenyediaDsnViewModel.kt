@@ -22,7 +22,6 @@ object PenyediaViewModel{
                 krsApp().containerApp.repositoryDosen
             )
         }
-
     }
 }
 
