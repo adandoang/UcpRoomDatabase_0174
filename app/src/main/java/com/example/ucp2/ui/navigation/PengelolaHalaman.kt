@@ -9,10 +9,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.ucp2.ui.navigation.DestinasiDetail
 import com.example.ucp2.ui.navigation.DestinasiHomeDsn
+import com.example.ucp2.ui.navigation.DestinasiHomeMK
+import com.example.ucp2.ui.navigation.DestinasiUpdate
 import com.example.ucp2.ui.view.Dosen.DestinasiInsert
 import com.example.ucp2.ui.view.Dosen.HomeDsnView
 import com.example.ucp2.ui.view.Dosen.InsertDsnView
+import com.example.ucp2.ui.view.MataKuliah.DetailMataKuliahView
+import com.example.ucp2.ui.view.MataKuliah.UpdateMKView
+import com.example.ucp2.ui.viewmodel.matakuliahvm.DetailMataKuliahViewModel
 
 @Composable
 fun PengelolaHalaman(
@@ -21,13 +27,13 @@ fun PengelolaHalaman(
 ) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiHomeDsn.route,
+        startDestination = DestinasiHomeMK.route,
         modifier = modifier
     ) {
         composable(
-            route = DestinasiHomeDsn.route
+            route = DestinasiHomeMK.route
         ) {
-            HomeDsnView(
+            HomeMhsView(
                 onAddDsn = {
                     navController.navigate(DestinasiInsert.route)
                 },
@@ -49,48 +55,48 @@ fun PengelolaHalaman(
             )
         }
 
-//        composable(
-//            DestinasiDetail.routesWithArg,
-//            arguments = listOf(
-//                navArgument(DestinasiDetail.NIM) {
-//                    type = NavType.StringType
-//                }
-//            )
-//        ) {
-//            val nim = it.arguments?.getString(DestinasiDetail.NIM)
-//            nim?.let { nim ->
-//                DetailMhsView(
-//                    onBack = {
-//                        navController.popBackStack()
-//                    },
-//                    onEditClick = {
-//                        navController.navigate("${DestinasiUpdate.route}/$it")
-//                    },
-//                    modifier = modifier,
-//                    onDeleteClick = {
-//                        navController.popBackStack()
-//                    }
-//                )
-//            }
-//        }
-//
-//        composable(
-//            DestinasiUpdate.routesWithArg,
-//            arguments = listOf(
-//                navArgument(DestinasiUpdate.NIM) {
-//                    type = NavType.StringType
-//                }
-//            )
-//        ) {
-//            UpdateMhsView(
-//                onBack = {
-//                    navController.popBackStack()
-//                },
-//                onNavigate = {
-//                    navController.popBackStack()
-//                },
-//                modifier = modifier
-//            )
-//        }
+        composable(
+            DestinasiDetail.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiDetail.KODE) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val nim = it.arguments?.getString(DestinasiDetail.KODE)
+            nim?.let { nidn ->
+                DetailMataKuliahView(
+                    onBack = {
+                        navController.popBackStack()
+                    },
+                    onEditClick = {
+                        navController.navigate("${DestinasiUpdate.route}/$it")
+                    },
+                    modifier = modifier,
+                    onDeleteClick = {
+                        navController.popBackStack()
+                    }
+                )
+            }
+        }
+
+        composable(
+            DestinasiUpdate.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiUpdate.KODE) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            UpdateMKView(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {
+                    navController.popBackStack()
+                },
+                modifier = modifier
+            )
+        }
     }
 }
