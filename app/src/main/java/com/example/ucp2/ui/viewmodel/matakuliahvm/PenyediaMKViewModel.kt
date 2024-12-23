@@ -22,16 +22,18 @@ object PenyediaMKViewModel{
                 krsApp().containerApp.repositoryMK
             )
         }
-//        initializer {
-//            DetailMataKuliahViewModel(
-//                krsApp().containerApp.repositoryMK
-//            )
-//        }
-//        initializer {
-//            UpdateMataKuliahViewModel(
-//                krsApp().containerApp.repositoryMK
-//            )
-//        }
+        initializer {
+            DetailMataKuliahViewModel(
+                createSavedStateHandle(),
+                krsApp().containerApp.repositoryMK
+            )
+        }
+        initializer {
+            UpdateMataKuliahViewModel(
+                createSavedStateHandle(),
+                krsApp().containerApp.repositoryMK
+            )
+        }
     }
 }
 
