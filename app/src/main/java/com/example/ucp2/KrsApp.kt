@@ -1,3 +1,5 @@
+package com.example.ucp2
+
 import android.app.Application
 import com.example.ucp2.dependenciesinjection.ContainerApp
 import com.example.ucp2.dependenciesinjection.InterfaceContainerApp

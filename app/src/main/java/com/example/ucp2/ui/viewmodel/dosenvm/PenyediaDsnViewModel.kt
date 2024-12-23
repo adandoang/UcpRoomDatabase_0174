@@ -1,6 +1,5 @@
 package com.example.ucp2.ui.viewmodel.dosenvm
 
-import KrsApp
 import android.text.Editable.Factory
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.createSavedStateHandle
@@ -9,6 +8,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.ucp2.data.entity.Dosen
+import com.example.ucp2.KrsApp
 
 object PenyediaDsnViewModel{
     val Factory = viewModelFactory {

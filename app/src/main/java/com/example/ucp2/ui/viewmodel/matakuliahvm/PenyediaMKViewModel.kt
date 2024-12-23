@@ -1,6 +1,6 @@
 package com.example.ucp2.ui.viewmodel.matakuliahvm
 
-import KrsApp
+import com.example.ucp2.KrsApp
 import android.text.Editable.Factory
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.createSavedStateHandle
@@ -22,16 +22,16 @@ object PenyediaMKViewModel{
                 krsApp().containerApp.repositoryMK
             )
         }
-        initializer {
-            DetailMataKuliahViewModel(
-                krsApp().containerApp.repositoryMK
-            )
-        }
-        initializer {
-            UpdateMataKuliahViewModel(
-                krsApp().containerApp.repositoryMK
-            )
-        }
+//        initializer {
+//            DetailMataKuliahViewModel(
+//                krsApp().containerApp.repositoryMK
+//            )
+//        }
+//        initializer {
+//            UpdateMataKuliahViewModel(
+//                krsApp().containerApp.repositoryMK
+//            )
+//        }
     }
 }
 

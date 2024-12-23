@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.ucp2.data.dao.DosenDao
 import com.example.ucp2.data.dao.MataKuliahDao
+import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.data.entity.MataKuliah
 
 //Mendefinisikan database dengan tabel Mahasiswa
-@Database(entities = [MataKuliah::class], version = 1, exportSchema = false)
+@Database(entities = [MataKuliah::class, Dosen::class], version = 1, exportSchema = false)
 abstract class KrsDatabase : RoomDatabase(){
 
     //Mendefinisikan fungsi untuk mengakses data Mahasiswa
