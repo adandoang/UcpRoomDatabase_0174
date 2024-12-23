@@ -72,7 +72,7 @@ fun UpdateMKView(
                 uiState = uiState,
                 onValueChange = {
                         updatedEvent ->
-                    viewModel.updateState(updatedEvent) //update state di viewmodel
+                        viewModel.updateState(updatedEvent) //update state di viewmodel
                 },
                 onClick = {
                     coroutineScope.launch {

@@ -262,14 +262,15 @@ fun FormMataKuliah(
         }
 
         Spacer(modifier = Modifier.height(10.dp))
-        Text("Silahkan pilih Mata Kuliah yang anda inginkan",
+
+        Text("Silahkan pilih Dosen",
             fontSize = 12.sp,
             fontWeight = FontWeight.Light)
         Spacer(modifier = Modifier.padding(8.dp))
         DynamicSelectedField(
             selectedValue = chosenDropdown,
             options = isiDDMataKuliah.options,
-            label = "Mata Kuliah",
+            label = "Dosen",
             onValueChangedEvent = {
                 chosenDropdown = it
             }

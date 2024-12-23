@@ -6,8 +6,12 @@ import androidx.compose.runtime.setValue
 import androidx.core.app.NotificationCompat.MessagingStyle.Message
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.data.entity.MataKuliah
+import com.example.ucp2.repository.RepositoryDosen
 import com.example.ucp2.repository.RepositoryMK
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 //data class variabel yang menyimpan data input form
@@ -102,7 +106,6 @@ class MataKuliahViewModel(private val  repositoryMK: RepositoryMK) : ViewModel()
         uiState = uiState.copy(snackBarMessage = null)
     }
 }
-
 
 
 

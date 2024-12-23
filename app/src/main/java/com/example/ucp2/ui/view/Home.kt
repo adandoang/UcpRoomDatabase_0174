@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -44,13 +45,17 @@ fun Home(
                 ) {
                     Text(
                         text = "Dosen",
-                        color = Color.Black,
-                        fontSize = 60.sp
+                        color = colorResource(id = R.color.dark_blue),
+                        fontSize = 40.sp,
+                        modifier = Modifier.padding(5.dp),
+                        fontWeight = FontWeight.Bold
                     )
-                    Spacer(modifier = Modifier.padding(10.dp))
-//                    Image(
-//                        painter = painterResource(R.drawable.)
-//                    )
+                    Image(
+                        painter = painterResource(R.drawable.dosen),
+                        contentDescription = "",
+                        modifier = Modifier.size(150.dp),
+                    )
+                    Spacer(modifier = Modifier.padding(5.dp))
                     Button(
                         onClick = onButtonClickDsn,
                         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
@@ -70,11 +75,18 @@ fun Home(
                       horizontalAlignment = Alignment.CenterHorizontally
                   ){
                       Text(
-                          color = Color.Black,
+                          color = colorResource(id = R.color.dark_blue),
                           text = "Mata Kuliah",
-                          fontSize = 60.sp
+                          fontSize = 40.sp,
+                          modifier = Modifier.padding(5.dp),
+                          fontWeight = FontWeight.Bold
                       )
-                      Spacer(modifier = Modifier.padding(10.dp))
+                      Image(
+                          painter = painterResource(R.drawable.matkul2),
+                          contentDescription = "",
+                          modifier = Modifier.size(150.dp)
+                      )
+                      Spacer(modifier = Modifier.padding(5.dp))
                       Button(
                           onClick = onButtonClickMK,
                           modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
