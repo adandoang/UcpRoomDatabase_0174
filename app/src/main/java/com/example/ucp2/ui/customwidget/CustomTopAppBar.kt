@@ -36,7 +36,8 @@ fun CustomTopAppBar(
                     onClick = onBack,
                     modifier = Modifier.align(Alignment.CenterVertically)
                 ) {
-                    Text("Kembali")
+                    Text("Kembali",
+                        modifier = Modifier.weight(0.3f))
                 }
                 Spacer(modifier = Modifier.weight(2f))
             }

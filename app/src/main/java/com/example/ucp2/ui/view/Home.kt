@@ -58,9 +58,12 @@ fun Home(
                     Spacer(modifier = Modifier.padding(5.dp))
                     Button(
                         onClick = onButtonClickDsn,
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                            .padding(5.dp)
                     ) {
-                        Text(text = "Klik Saya")
+                        Text(text = "Go to Dosen Page")
                     }
                 }
             }
@@ -89,10 +92,14 @@ fun Home(
                       Spacer(modifier = Modifier.padding(5.dp))
                       Button(
                           onClick = onButtonClickMK,
-                          modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+                          modifier = Modifier
+                              .fillMaxWidth()
+                              .padding(horizontal = 16.dp)
+                              .padding(5.dp)
                       ) {
-                          Text(text = "Klik Saya")
+                          Text(text = "Go to MK Page")
                       }
+
                   }
               }
          }

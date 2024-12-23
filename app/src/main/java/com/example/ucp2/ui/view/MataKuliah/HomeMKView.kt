@@ -28,11 +28,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -135,7 +141,7 @@ fun BodyHomeMKView(
                     onClick(it)
                     println(it)
                 },
-                modifier = modifier
+                modifier = modifier.padding(10.dp)
             )
         }
     }
@@ -169,12 +175,13 @@ fun CardMK(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
+    var isHovered by remember { mutableStateOf(false) }
     Card(
         onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)
-    ) {
+                ) {
         Column(
             modifier = Modifier.padding(8.dp)
         ) {

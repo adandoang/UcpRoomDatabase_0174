@@ -14,7 +14,8 @@ object PenyediaMKViewModel{
     val Factory = viewModelFactory {
         initializer {
             MataKuliahViewModel(
-                krsApp().containerApp.repositoryMK
+                krsApp().containerApp.repositoryMK,
+                krsApp().containerApp.repositoryDosen
             )
         }
         initializer {
@@ -31,7 +32,8 @@ object PenyediaMKViewModel{
         initializer {
             UpdateMataKuliahViewModel(
                 createSavedStateHandle(),
-                krsApp().containerApp.repositoryMK
+                krsApp().containerApp.repositoryMK,
+                krsApp().containerApp.repositoryDosen
             )
         }
     }

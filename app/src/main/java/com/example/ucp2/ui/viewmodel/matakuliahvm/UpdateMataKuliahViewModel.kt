@@ -6,19 +6,26 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.data.entity.MataKuliah
+import com.example.ucp2.repository.RepositoryDosen
 import com.example.ucp2.repository.RepositoryMK
 import com.example.ucp2.ui.navigation.DestinasiUpdate
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.security.PrivateKey
 import java.text.Normalizer.Form
 
 class UpdateMataKuliahViewModel(
     savedStateHandle: SavedStateHandle,
-    private val repositoryMK: RepositoryMK
+    private val repositoryMK: RepositoryMK,
+    private val repositoryDosen: RepositoryDosen
 ): ViewModel() {
     var updateUIState by mutableStateOf(MKUIState())
+        private set
+
+    var dosenList by mutableStateOf<List<Dosen>>(emptyList())
         private set
 
     private val _kode: String = checkNotNull(savedStateHandle[DestinasiUpdate.KODE])
@@ -29,6 +36,11 @@ class UpdateMataKuliahViewModel(
                 .filterNotNull()
                 .first()
                 .toUIStateMK()
+        }
+
+        viewModelScope.launch {
+            val dosentListFromRepo = repositoryDosen.getAllDsn().first()
+            updateUIState = updateUIState.copy(dosenList = dosentListFromRepo)
         }
     }
 

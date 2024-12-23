@@ -84,7 +84,8 @@ fun UpdateMKView(
                             }
                         }
                     }
-                }
+                },
+                dosenList = uiState.dosenList
             )
         }
     }

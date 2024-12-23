@@ -135,7 +135,7 @@ fun BodyHomeDsnView(
                     onClick(it)
                     println(it)
                 },
-                modifier = modifier
+                modifier = modifier.padding(10.dp)
             )
         }
     }

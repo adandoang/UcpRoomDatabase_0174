@@ -37,7 +37,8 @@ fun MataKuliahEvent.toMataKuliahEntity(): MataKuliah = MataKuliah(
 data class MKUIState(
     val MataKuliahEvent: MataKuliahEvent = MataKuliahEvent(),
     val isEntryValid: FormErrorState = FormErrorState(),
-    val snackBarMessage: String? = null
+    val snackBarMessage: String? = null,
+    val dosenList: List<Dosen> = emptyList()
 )
 
 data class FormErrorState(
@@ -54,8 +55,21 @@ data class FormErrorState(
     }
 }
 
-class MataKuliahViewModel(private val  repositoryMK: RepositoryMK) : ViewModel() {
+class MataKuliahViewModel(private val  repositoryMK: RepositoryMK, private val repositoryDosen: RepositoryDosen) : ViewModel() {
     var uiState by mutableStateOf(MKUIState())
+        private set
+    //dosen list
+    var dosenList by mutableStateOf<List<Dosen>>(emptyList())
+        private set
+
+    init {
+        viewModelScope.launch {
+            repositoryDosen.getAllDsn().collect {dosenList ->
+                this@MataKuliahViewModel.dosenList = dosenList
+                updateUiState()
+            }
+        }
+    }
 
     fun updateState(MataKuliahEvent: MataKuliahEvent) {
         uiState = uiState.copy(
@@ -67,12 +81,12 @@ class MataKuliahViewModel(private val  repositoryMK: RepositoryMK) : ViewModel()
     private fun validateField(): Boolean {
         val event = uiState.MataKuliahEvent
         val errorState = FormErrorState(
-            kode = if (event.kode.isNotEmpty()) null else "kode tidak boleh kosong",
-            nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
-            sks = if (event.sks.isNotEmpty()) null else "sks tidak boleh kosong",
-            semester = if (event.semester.isNotEmpty()) null else "semester tidak boleh kosong",
-            jenis = if (event.jenis.isNotEmpty()) null else "jenis tidak boleh kosong",
-            dosenPengampu = if (event.jenis.isNotEmpty()) null else "dosen pengampu tidak boleh kosong"
+            kode = if (event.kode.isNotEmpty()) null else "Kode Mata Kuliah tidak boleh kosong",
+            nama = if (event.nama.isNotEmpty()) null else "Nama Mata Kuliah tidak boleh kosong",
+            sks = if (event.sks.isNotEmpty()) null else "SKS tidak boleh kosong",
+            semester = if (event.semester.isNotEmpty()) null else "Semester tidak boleh kosong",
+            jenis = if (event.jenis.isNotEmpty()) null else "Jenis Mata Kuliah tidak boleh kosong",
+            dosenPengampu = if (event.jenis.isNotEmpty()) null else "Dosen pengampu tidak boleh kosong"
         )
         uiState = uiState.copy(isEntryValid = errorState)
         return errorState.isValid()
@@ -104,6 +118,10 @@ class MataKuliahViewModel(private val  repositoryMK: RepositoryMK) : ViewModel()
 
     fun resetSnackBarMessage() {
         uiState = uiState.copy(snackBarMessage = null)
+    }
+
+    private fun updateUiState(){
+        uiState = uiState.copy(dosenList = dosenList)
     }
 }
 
