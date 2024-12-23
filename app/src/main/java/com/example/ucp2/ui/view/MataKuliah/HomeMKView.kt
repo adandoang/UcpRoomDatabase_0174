@@ -68,7 +68,7 @@ fun HomeMKView(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Tambah MataKuliah",
+                    contentDescription = "Tambah Mata Kuliah",
                 )
             }
         }

@@ -75,7 +75,7 @@ fun InsertMKView(
             CustomTopAppBar(
                 onBack = onBack,
                 showBackButton = true,
-                judul = "Tambah MataKuliah"
+                judul = "Tambah Mata Kuliah"
             )
 
             InsertBodyMK(
@@ -131,7 +131,8 @@ fun FormMataKuliah(
     val jenis = listOf("Pemrograman", "Database", "UI/UX", "Jaringan")
 
     Column (
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ){
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -161,28 +162,7 @@ fun FormMataKuliah(
         Text(text = errorState.kode ?: "",
             color = Color.Red)
 
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Jenis Matkul")
-        Row (
-            modifier = Modifier.fillMaxWidth()
-        ){
-            jenis.forEach { jns ->
-                Row (
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Start
-                ){
-                    RadioButton(
-                        selected = MataKuliahEvent.jenis == jns,
-                        onClick = {
-                            onValueChange(MataKuliahEvent.copy(jenis = jns))
-                        },
-                    )
-                    Text(
-                        text = jns,
-                    )
-                }
-            }
-        }
+        Spacer(modifier = Modifier.height(2.dp))
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = MataKuliahEvent.sks,
@@ -198,7 +178,7 @@ fun FormMataKuliah(
             color = Color.Red
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -214,5 +194,65 @@ fun FormMataKuliah(
             text = errorState.semester ?: "",
             color = Color.Red
         )
+
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(text = "Jenis Matkul")
+        Spacer(modifier = Modifier.height(10.dp))
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            // Baris pertama
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                jenis.take(2).forEach { jns ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        RadioButton(
+                            selected = MataKuliahEvent.jenis == jns,
+                            onClick = {
+                                onValueChange(MataKuliahEvent.copy(jenis = jns))
+                            },
+                        )
+                        Text(
+                            text = jns,
+                        )
+                    }
+                }
+            }
+
+            // Baris kedua
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                jenis.drop(2).forEach { jns ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        RadioButton(
+                            selected = MataKuliahEvent.jenis == jns,
+                            onClick = {
+                                onValueChange(MataKuliahEvent.copy(jenis = jns))
+                            },
+                        )
+                        Text(
+                            text = jns,
+                        )
+                    }
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+
+
     }
 }

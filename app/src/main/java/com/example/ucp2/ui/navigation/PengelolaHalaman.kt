@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.ucp2.ui.navigation.DestinasiDetail
+import com.example.ucp2.ui.navigation.DestinasiDetail.KODE
 import com.example.ucp2.ui.navigation.DestinasiHomeDsn
 import com.example.ucp2.ui.navigation.DestinasiHomeMK
 import com.example.ucp2.ui.navigation.DestinasiUpdate
@@ -17,6 +18,8 @@ import com.example.ucp2.ui.view.Dosen.DestinasiInsert
 import com.example.ucp2.ui.view.Dosen.HomeDsnView
 import com.example.ucp2.ui.view.Dosen.InsertDsnView
 import com.example.ucp2.ui.view.MataKuliah.DetailMataKuliahView
+import com.example.ucp2.ui.view.MataKuliah.HomeMKView
+import com.example.ucp2.ui.view.MataKuliah.InsertMKView
 import com.example.ucp2.ui.view.MataKuliah.UpdateMKView
 import com.example.ucp2.ui.viewmodel.matakuliahvm.DetailMataKuliahViewModel
 
@@ -33,8 +36,14 @@ fun PengelolaHalaman(
         composable(
             route = DestinasiHomeMK.route
         ) {
-            HomeMhsView(
-                onAddDsn = {
+            HomeMKView(
+                onDetailClick = {kode ->
+                    navController.navigate("${DestinasiDetail.route}/$KODE")
+                    println(
+                        "PengelolaHalaman: kode = $KODE"
+                    )
+                },
+                onAddMK = {
                     navController.navigate(DestinasiInsert.route)
                 },
                 modifier = modifier
@@ -44,7 +53,7 @@ fun PengelolaHalaman(
         composable(
             route = DestinasiInsert.route
         ) {
-            InsertDsnView(
+            InsertMKView(
                 onBack = {
                     navController.popBackStack()
                 },
