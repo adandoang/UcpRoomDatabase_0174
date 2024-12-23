@@ -54,7 +54,7 @@ fun UpdateMKView(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }, //tempatkan snackbar di scaffold
         topBar = {
             CustomTopAppBar(
-                judul = "Edit MataKuliah",
+                judul = "Edit Mata Kuliah",
                 showBackButton = true,
                 onBack = onBack,
             )

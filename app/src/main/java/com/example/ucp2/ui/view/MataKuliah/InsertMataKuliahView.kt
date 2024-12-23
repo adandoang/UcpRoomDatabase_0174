@@ -1,6 +1,8 @@
 package com.example.ucp2.ui.view.MataKuliah
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,9 +32,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.R
 import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.ui.customwidget.CustomTopAppBar
 import com.example.ucp2.ui.navigation.AlamatNavigasi
@@ -53,7 +58,7 @@ fun InsertMKView(
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: MataKuliahViewModel = viewModel(factory = PenyediaMKViewModel.Factory)
-){
+) {
     val uiState = viewModel.uiState
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
@@ -67,38 +72,37 @@ fun InsertMKView(
         }
     }
 
-    Scaffold (
-        modifier = modifier,
+    Scaffold(
+        modifier = Modifier,
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
-    ){
-            padding ->
-        Column (
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ){
-            CustomTopAppBar(
-                onBack = onBack,
-                showBackButton = true,
-                judul = "Tambah Mata Kuliah"
-            )
+    ) { padding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                CustomTopAppBar(
+                    onBack = onBack,
+                    showBackButton = true,
+                    judul = "Tambah Mata Kuliah"
+                )
 
-            InsertBodyMK(
-                uiState = uiState,
-                dosenList = uiState.dosenList,
-                onValueChange = { updatedEvent ->
-                    viewModel.updateState(updatedEvent)
-                },
-                onClick = {
-                    coroutineScope.launch {
-                        viewModel.saveData()
+                InsertBodyMK(
+                    uiState = uiState,
+                    dosenList = uiState.dosenList,
+                    onValueChange = { updatedEvent ->
+                        viewModel.updateState(updatedEvent)
+                    },
+                    onClick = {
+                        coroutineScope.launch {
+                            viewModel.saveData()
+                        }
+                        onNavigate()
                     }
-                    onNavigate()
-                }
-            )
+                )
+            }
         }
     }
-}
 
 @Composable
 fun InsertBodyMK(
@@ -109,26 +113,26 @@ fun InsertBodyMK(
     dosenList: List<Dosen>
 
 ) {
-    Column (
-        modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        FormMataKuliah(
-            MataKuliahEvent = uiState.MataKuliahEvent,
-            onValueChange = onValueChange,
-            errorState = uiState.isEntryValid,
+        Column(
             modifier = Modifier.fillMaxWidth(),
-            dosenList = dosenList
-        )
-        Button(
-            onClick = onClick,
-            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Simpan")
+            FormMataKuliah(
+                MataKuliahEvent = uiState.MataKuliahEvent,
+                onValueChange = onValueChange,
+                errorState = uiState.isEntryValid,
+                modifier = Modifier.fillMaxWidth(),
+                dosenList = dosenList
+            )
+            Button(
+                onClick = onClick,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("Simpan")
+            }
         }
     }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

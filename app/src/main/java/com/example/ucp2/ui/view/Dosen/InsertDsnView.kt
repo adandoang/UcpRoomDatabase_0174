@@ -1,6 +1,8 @@
 package com.example.ucp2.ui.view.Dosen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,9 +25,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.R
 import com.example.ucp2.ui.customwidget.CustomTopAppBar
 import com.example.ucp2.ui.viewmodel.dosenvm.DosenEvent
 import com.example.ucp2.ui.viewmodel.dosenvm.DosenViewModel
@@ -42,7 +47,7 @@ fun InsertDsnView(
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DosenViewModel = viewModel(factory = PenyediaDsnViewModel.Factory)
-){
+) {
     val uiState = viewModel.uiState
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
@@ -56,37 +61,37 @@ fun InsertDsnView(
         }
     }
 
-    Scaffold (
-        modifier = modifier,
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
-    ){
-            padding ->
-        Column (
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ){
-            CustomTopAppBar(
-                onBack = onBack,
-                showBackButton = true,
-                judul = "Tambah Dosen"
-            )
 
-            InsertBodyDsn(
-                uiState = uiState,
-                onValueChange = { updatedEvent ->
-                    viewModel.updateState(updatedEvent)
-                },
-                onClick = {
-                    coroutineScope.launch {
-                        viewModel.saveData()
+    Scaffold(
+        modifier = Modifier,
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+    ) { padding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                CustomTopAppBar(
+                    onBack = onBack,
+                    showBackButton = true,
+                    judul = "Tambah Dosen"
+                )
+
+                InsertBodyDsn(
+                    uiState = uiState,
+                    onValueChange = { updatedEvent ->
+                        viewModel.updateState(updatedEvent)
+                    },
+                    onClick = {
+                        coroutineScope.launch {
+                            viewModel.saveData()
+                        }
+                        onNavigate()
                     }
-                    onNavigate()
-                }
-            )
+                )
+            }
         }
     }
-}
 
 @Composable
 fun InsertBodyDsn(
@@ -123,59 +128,60 @@ fun FormDosen(
     modifier: Modifier = Modifier
 ) {
     val jenisKelamin = listOf("Laki-laki", "Perempuan")
+        Column(
+            modifier = modifier.fillMaxWidth()
+        ) {
+            OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = DosenEvent.nama,
+                onValueChange = {
+                    onValueChange(DosenEvent.copy(nama = it))
+                },
+                label = { Text("Nama") },
+                isError = errorState.nama != null,
+                placeholder = { Text("Masukkan Nama") },
+            )
+            Text(
+                text = errorState.nama ?: "",
+                color = Color.Red
+            )
 
-    Column (
-        modifier = modifier.fillMaxWidth()
-    ){
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = DosenEvent.nama,
-            onValueChange = {
-                onValueChange(DosenEvent.copy(nama = it))
-            },
-            label = { Text("Nama") },
-            isError = errorState.nama != null,
-            placeholder = { Text("Masukkan Nama") },
-        )
-        Text(
-            text = errorState.nama ?: "",
-            color = Color.Red
-        )
+            OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = DosenEvent.nidn, onValueChange = {
+                    onValueChange(DosenEvent.copy(nidn = it))
+                },
+                label = { Text("NIDN") },
+                isError = errorState.nidn != null,
+                placeholder = { Text("Masukkan nidn") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+            Text(
+                text = errorState.nidn ?: "",
+                color = Color.Red
+            )
 
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = DosenEvent.nidn, onValueChange = {
-                onValueChange(DosenEvent.copy(nidn = it))
-            },
-            label = { Text("NIDN") },
-            isError = errorState.nidn != null,
-            placeholder = { Text("Masukkan nidn") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        Text(text = errorState.nidn ?: "",
-            color = Color.Red)
-
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Jenis Kelamin")
-        Row (
-            modifier = Modifier.fillMaxWidth()
-        ){
-            jenisKelamin.forEach { jk ->
-                Row (
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Start
-                ){
-                    RadioButton(
-                        selected = DosenEvent.jenisKelamin == jk,
-                        onClick = {
-                            onValueChange(DosenEvent.copy(jenisKelamin = jk))
-                        },
-                    )
-                    Text(
-                        text = jk,
-                    )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(text = "Jenis Kelamin")
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                jenisKelamin.forEach { jk ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        RadioButton(
+                            selected = DosenEvent.jenisKelamin == jk,
+                            onClick = {
+                                onValueChange(DosenEvent.copy(jenisKelamin = jk))
+                            },
+                        )
+                        Text(
+                            text = jk,
+                        )
+                    }
                 }
             }
         }
     }
-}

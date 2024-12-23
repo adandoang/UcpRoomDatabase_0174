@@ -1,5 +1,6 @@
 package com.example.ucp2.ui.view.MataKuliah
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -43,11 +44,14 @@ import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.R
 import com.example.ucp2.data.entity.MataKuliah
 import com.example.ucp2.ui.customwidget.CustomTopAppBar
 import com.example.ucp2.ui.viewmodel.matakuliahvm.HomeMKViewModel
@@ -66,7 +70,7 @@ fun HomeMKView(
     Scaffold (
         topBar = {
             CustomTopAppBar(
-                judul = "Daftar MataKuliah",
+                judul = "Daftar Mata Kuliah",
                 showBackButton = true,
                 onBack = onBack,
                 modifier = modifier
@@ -158,18 +162,27 @@ fun ListMataKuliah(
     modifier: Modifier = Modifier,
     onClick: (String) -> Unit = {}
 ) {
-    LazyColumn (
-        modifier = modifier
-    ) {
-        items(
-            items = listMK,
-            itemContent = { MK ->
-                CardMK(
-                    MK = MK,
-                    onClick = { onClick(MK.kode) }
-                )
-            }
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = R.drawable.gojolagi), // Ganti dengan gambar Anda
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
         )
+
+        LazyColumn(
+            modifier = modifier
+        ) {
+            items(
+                items = listMK,
+                itemContent = { MK ->
+                    CardMK(
+                        MK = MK,
+                        onClick = { onClick(MK.kode) }
+                    )
+                }
+            )
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 package com.example.ucp2.ui.view.Dosen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,10 +33,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.R
 import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.ui.customwidget.CustomTopAppBar
 import com.example.ucp2.ui.viewmodel.dosenvm.HomeDsnViewModel
@@ -146,18 +150,26 @@ fun ListDosen(
     modifier: Modifier = Modifier,
     onClick: (String) -> Unit = {}
 ) {
-    LazyColumn (
-        modifier = modifier
-    ) {
-        items(
-            items = listDsn,
-            itemContent = { Dsn ->
-                CardDsn(
-                    Dsn = Dsn,
-                    onClick = { onClick(Dsn.nidn) }
-                )
-            }
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = R.drawable.gojolagi), // Ganti dengan gambar Anda
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
         )
+        LazyColumn(
+            modifier = modifier
+        ) {
+            items(
+                items = listDsn,
+                itemContent = { Dsn ->
+                    CardDsn(
+                        Dsn = Dsn,
+                        onClick = { onClick(Dsn.nidn) }
+                    )
+                }
+            )
+        }
     }
 }
 
