@@ -14,9 +14,9 @@ interface InterfaceContainerApp {
 
 class ContainerApp(private val context: Context) : InterfaceContainerApp {
     override val repositoryDosen: RepositoryDosen by lazy {
-        LocalRepositoryDosen(KrsDatabase.getDatabase(context).dosenDao())
+        LocalRepositoryDosen(KrsDatabase.getDatabase(context).DosenDao())
     }
     override val repositoryMK: RepositoryMK by lazy {
-        LocalRepositoryMK(KrsDatabase.getDatabase(context).mataKuliahDao())
+        LocalRepositoryMK(KrsDatabase.getDatabase(context).MataKuliahDao())
     }
 }

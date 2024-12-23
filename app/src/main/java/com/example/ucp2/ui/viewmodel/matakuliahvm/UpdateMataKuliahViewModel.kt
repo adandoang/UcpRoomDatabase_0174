@@ -32,9 +32,9 @@ class UpdateMataKuliahViewModel(
         }
     }
 
-    fun updateState(MataKuliahEvent: MataKuliahEvent) {
+    fun updateState(mataKuliahEvent: MataKuliahEvent) {
         updateUIState = updateUIState.copy(
-            MataKuliahEvent = MataKuliahEvent,
+            MataKuliahEvent = mataKuliahEvent,
         )
     }
 

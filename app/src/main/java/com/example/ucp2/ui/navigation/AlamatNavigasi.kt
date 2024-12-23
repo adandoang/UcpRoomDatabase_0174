@@ -28,3 +28,11 @@ object DestinasiUpdate : AlamatNavigasi {
     const val KODE = "kode"
     val routesWithArg = "$route/{$KODE}"
 }
+
+object DestinasiInsert : AlamatNavigasi {
+    override val route: String = "insert_MK"
+}
+
+object DestinasiInsertDsn : AlamatNavigasi {
+    override val route: String = "insert_Dsn"
+}

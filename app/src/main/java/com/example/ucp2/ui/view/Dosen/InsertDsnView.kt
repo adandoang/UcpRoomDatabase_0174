@@ -38,9 +38,7 @@ import com.example.ucp2.ui.viewmodel.dosenvm.FormErrorState
 import com.example.ucp2.ui.viewmodel.dosenvm.PenyediaDsnViewModel
 import kotlinx.coroutines.launch
 
-object DestinasiInsert : AlamatNavigasi {
-    override val route: String = "insert_Dsn"
-}
+
 
 @Composable
 fun InsertDsnView(

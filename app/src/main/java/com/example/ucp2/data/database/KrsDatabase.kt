@@ -14,8 +14,8 @@ import com.example.ucp2.data.entity.MataKuliah
 abstract class KrsDatabase : RoomDatabase(){
 
     //Mendefinisikan fungsi untuk mengakses data Mahasiswa
-    abstract fun mataKuliahDao(): MataKuliahDao
-    abstract fun dosenDao(): DosenDao
+    abstract fun MataKuliahDao(): MataKuliahDao
+    abstract fun DosenDao(): DosenDao
 
     companion object {
         @Volatile //Memastikan bahwa nilai variabel Instance selalu sama di

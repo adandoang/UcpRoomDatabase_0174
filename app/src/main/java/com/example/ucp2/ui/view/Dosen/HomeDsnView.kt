@@ -46,6 +46,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun HomeDsnView(
+    onBack:() -> Unit,
     viewModel: HomeDsnViewModel = viewModel(factory = PenyediaDsnViewModel.Factory),
     onAddDsn: () -> Unit = {},
     onDetailClick: (String) -> Unit = {},
@@ -55,8 +56,8 @@ fun HomeDsnView(
         topBar = {
             CustomTopAppBar(
                 judul = "Daftar Dosen",
-                showBackButton = false,
-                onBack = {},
+                showBackButton = true,
+                onBack = onBack,
                 modifier = modifier
             )
         },
