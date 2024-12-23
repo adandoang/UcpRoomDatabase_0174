@@ -1,11 +1,9 @@
 package com.example.ucp2.ui.viewmodel.matakuliahvm
 
-import androidx.core.app.NotificationCompat.MessagingStyle.Message
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp2.data.entity.MataKuliah
-import com.example.ucp2.repository.LocalRepositoryMK
 import com.example.ucp2.repository.RepositoryMK
 import com.example.ucp2.ui.navigation.DestinasiDetail
 import kotlinx.coroutines.delay

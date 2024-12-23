@@ -41,10 +41,10 @@ fun PengelolaHalaman(
         ) {
             Home (onButtonClickDsn = {
                 navController.navigate(DestinasiHomeDsn.route)
-                },
+            },
                 onButtonClickMK = {
                     navController.navigate(DestinasiHomeMK.route)
-            } )
+                } )
         }
         composable(
             route = DestinasiHomeDsn.route

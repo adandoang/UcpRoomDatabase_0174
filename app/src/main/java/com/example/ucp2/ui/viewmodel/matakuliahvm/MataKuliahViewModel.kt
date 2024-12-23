@@ -124,6 +124,3 @@ class MataKuliahViewModel(private val  repositoryMK: RepositoryMK, private val r
         uiState = uiState.copy(dosenList = dosenList)
     }
 }
-
-
-
